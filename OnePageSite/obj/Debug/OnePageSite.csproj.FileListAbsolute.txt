@@ -122,4 +122,3 @@ E:\OnePageSite\OnePageSite\obj\Debug\OnePageSite.csproj.CoreCompileInputs.cache
 E:\OnePageSite\OnePageSite\obj\Debug\OnePageSite.csproj.CopyComplete
 E:\OnePageSite\OnePageSite\obj\Debug\OnePageSite.dll
 E:\OnePageSite\OnePageSite\obj\Debug\OnePageSite.pdb
-E:\OnePageSite\OnePageSite\obj\Debug\OnePageSite.csprojAssemblyReference.cache

@@ -6,8 +6,8 @@ namespace OnePageSite.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Login")]
-        public string Login { get; set; }
+        [Display(Name = "Email")]
+        public string Email { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -40,9 +40,10 @@ namespace OnePageSite.Models
 
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+		[Required]
+		[Display(Name = "Email")]
+		[EmailAddress]
+		public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -56,10 +57,10 @@ namespace OnePageSite.Models
    
     public class ResetPasswordViewModel
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Login")]
-        public string Email { get; set; }
+		[Required]
+		[EmailAddress]
+		[Display(Name = "Email")]
+		public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 8)]
