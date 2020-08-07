@@ -34,15 +34,15 @@ namespace OnePageSite.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Login")]
-        public string Login { get; set; }
+        [Display(Name = "Email")]
+        public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Login")]
-        public string Login { get; set; }
+        [Display(Name = "Email")]
+        public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

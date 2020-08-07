@@ -66,29 +66,45 @@ namespace OnePageSite.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public ActionResult Login(LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
+			ViewBag.Message = "";
+
+			if (!ModelState.IsValid)
             {
                 return View(model);
             }
-
-            // Сбои при входе не приводят к блокированию учетной записи
-            // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Login, model.Password, model.RememberMe, shouldLockout: false);
 			
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");                
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Unsuccessful login attempt.");
-                    return View(model);
-            }
-        }
+			ServiceReference1.ICUTechClient iCUTechClient = new ServiceReference1.ICUTechClient();
+			iCUTechClient.Open();
+			var result = iCUTechClient.Login(model.Email, model.Password, "");
+			iCUTechClient.Close();
+				
+			if(result.IndexOf("ResultCode") > 0)
+				{
+					result = result.Substring(result.LastIndexOf(":") + 1).Replace("{", "").Replace("}", "").Replace("\"", "");
+					ModelState.AddModelError("", result);
+				}
+			if (result.IndexOf("EntityId") > 0)
+				{
+					result = result.Replace("{", "").Replace("}", "");
+					var resArr = result.Split(',');
+					string str = String.Empty; 
+
+					foreach(var res in resArr)
+					{
+						if((res.IndexOf("FirstName") > 0) || (res.IndexOf("LastName") > 0) || (res.IndexOf("Email") > 0) && (res.IndexOf("EmailConfirm") < 0) || (res.IndexOf("Mobile") > 0) && (res.IndexOf("MobileConfirm") < 0))
+						{
+							str += res.Replace("\"", "") + "			";							
+						}
+					}
+
+					ViewBag.Message = str;
+					return View("ConfirmEmail");
+				}
+
+					return View(model);
+		}
 
         //
         // GET: /Account/VerifyCode
@@ -115,10 +131,6 @@ namespace OnePageSite.Controllers
                 return View(model);
             }
 
-            // Приведенный ниже код защищает от атак методом подбора, направленных на двухфакторные коды. 
-            // Если пользователь введет неправильные коды за указанное время, его учетная запись 
-            // будет заблокирована на заданный период. 
-            // Параметры блокирования учетных записей можно настроить в IdentityConfig
             var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
