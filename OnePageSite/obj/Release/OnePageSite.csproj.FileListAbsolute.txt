@@ -118,8 +118,8 @@ E:\OnePageSite\OnePageSite\bin\ru\System.Web.WebPages.Razor.resources.dll
 E:\OnePageSite\OnePageSite\bin\ru\System.Web.Optimization.resources.dll
 E:\OnePageSite\OnePageSite\bin\ru\EntityFramework.resources.dll
 E:\OnePageSite\OnePageSite\bin\ru\EntityFramework.SqlServer.resources.dll
-E:\OnePageSite\OnePageSite\obj\Debug\OnePageSite.csprojAssemblyReference.cache
-E:\OnePageSite\OnePageSite\obj\Debug\OnePageSite.csproj.CoreCompileInputs.cache
-E:\OnePageSite\OnePageSite\obj\Debug\OnePageSite.csproj.CopyComplete
-E:\OnePageSite\OnePageSite\obj\Debug\OnePageSite.dll
-E:\OnePageSite\OnePageSite\obj\Debug\OnePageSite.pdb
+E:\OnePageSite\OnePageSite\obj\Release\OnePageSite.csprojAssemblyReference.cache
+E:\OnePageSite\OnePageSite\obj\Release\OnePageSite.csproj.CoreCompileInputs.cache
+E:\OnePageSite\OnePageSite\obj\Release\OnePageSite.csproj.CopyComplete
+E:\OnePageSite\OnePageSite\obj\Release\OnePageSite.dll
+E:\OnePageSite\OnePageSite\obj\Release\OnePageSite.pdb
